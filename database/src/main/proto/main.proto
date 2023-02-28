@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "mainservice";
+
+message GetMainRequest {
+  string id = 1;
+}
+
+message GetMainResponse {
+  Main main = 1;
+  DatabaseResponse databaseResponse = 2;
+}
+
+message Main {
+  string id = 1;
+  string name = 2;
+  string args = 3;
+}
+
+enum DatabaseResponse {
+  OK = 0;
+  ERROR = 1;
+}
+
+service MainService {
+  rpc GetMainById(GetMainRequest) returns (GetMainResponse);
+}
